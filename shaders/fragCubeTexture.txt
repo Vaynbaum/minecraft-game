@@ -1,0 +1,15 @@
+#version 330 core
+in vec2 TexCoord;
+out vec4 color;
+
+uniform sampler2D image;
+uniform vec3 objectColor;
+uniform vec3 lightColor;
+
+void main()
+{
+	vec4 texColor = texture(image, TexCoord) * vec4(lightColor * objectColor, 1.0f);
+	if(texColor.a < 0.1)
+        	discard;
+    	color = texColor;
+}
